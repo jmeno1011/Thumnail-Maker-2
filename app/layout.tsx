@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/next";
+import { getSiteUrl } from "@/utils/siteUrl";
 import "./globals.css";
 
-const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://thumnail-maker-2.vercel.app"
-).replace(/\/$/, "");
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

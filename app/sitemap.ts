@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
+import { getSiteUrl } from "@/utils/siteUrl";
 
-const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://thumnail-maker-2.vercel.app"
-).replace(/\/$/, "");
+const siteUrl = getSiteUrl();
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
