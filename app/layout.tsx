@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(
-  /\/$/,
-  "",
-);
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://thumnail-maker-2.vercel.app"
+).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -37,14 +36,23 @@ export const metadata: Metadata = {
       "Convert PNG, JPG, and HEIC images into optimized JPEG or WebP thumbnails directly in your browser.",
     url: "/",
     siteName: "Thumbnail Maker",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Thumbnail Maker image converter",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Thumbnail Maker - Fast Image Thumbnail Converter",
     description:
       "Convert PNG, JPG, and HEIC images into optimized JPEG or WebP thumbnails directly in your browser.",
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,

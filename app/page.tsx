@@ -115,6 +115,32 @@ export default function Home() {
         All processing happens directly in your browser · Files are never
         uploaded to a server
       </p>
+
+      <section
+        aria-labelledby="image-converter-details"
+        className="mt-12 border-t border-(--border) pt-8"
+      >
+        <h2
+          id="image-converter-details"
+          className="text-lg font-extrabold text-(--text)"
+        >
+          Fast Image Thumbnails for PNG, JPG, and HEIC Files
+        </h2>
+        <div className="mt-4 grid gap-4 text-sm leading-6 text-(--text-muted) md:grid-cols-3">
+          <p>
+            Convert source images into JPEG or WebP thumbnails with adjustable
+            quality and width settings.
+          </p>
+          <p>
+            Keep image proportions intact while reducing file size for sites,
+            previews, posts, and product images.
+          </p>
+          <p>
+            Process files in the browser so private images stay on your device
+            instead of being uploaded to a server.
+          </p>
+        </div>
+      </section>
     </main>
   );
 }
