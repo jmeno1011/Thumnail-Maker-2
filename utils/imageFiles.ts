@@ -1,4 +1,4 @@
-import { type OutputFormat } from "../constants";
+import { type OutputFormat, type OutputMode } from "../constants";
 
 // 드롭존과 파일 선택기에서 허용할 입력 포맷 목록입니다.
 const SUPPORTED_MIME_TYPES = new Set([
@@ -71,10 +71,15 @@ export async function loadImageSource(file: File) {
   }
 }
 
-export function getOutputFileName(inputName: string, format: OutputFormat) {
+export function getOutputFileName(
+  inputName: string,
+  format: OutputFormat,
+  mode: OutputMode,
+) {
   const ext = format === "jpeg" ? "jpg" : "webp";
   const baseName = inputName.replace(/\.(png|jpe?g|heic|heif)$/i, "");
+  const suffix = mode === "thumbnail" ? "thumb" : "converted";
 
-  // 업로드 원본 이름을 유지하되, 변환 결과임을 알 수 있게 _thumb 접미사를 붙입니다.
-  return `${baseName || inputName}_thumb.${ext}`;
+  // 업로드 원본 이름을 유지하되, 출력 모드가 드러나도록 접미사를 붙입니다.
+  return `${baseName || inputName}_${suffix}.${ext}`;
 }

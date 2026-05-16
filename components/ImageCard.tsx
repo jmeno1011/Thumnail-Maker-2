@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element -- Preview src is an in-browser data URL. */
 import { useCallback, useRef, useState } from "react";
-import { OutputFormat } from "@/constants";
+import { OutputFormat, OutputMode } from "@/constants";
 import { ProcessResult } from "@/types/image";
 import { getOutputFileName, loadImageSource } from "@/utils/imageFiles";
 import { formatBytes } from "@/utils/formatBytes";
@@ -9,6 +9,7 @@ import { formatBytes } from "@/utils/formatBytes";
 type ImageCardProps = {
   item: File;
   format: OutputFormat;
+  outputMode: OutputMode;
   quality: number;
   targetWidth: number;
 };
@@ -16,6 +17,7 @@ type ImageCardProps = {
 export function ImageCard({
   item,
   format,
+  outputMode,
   quality,
   targetWidth,
 }: ImageCardProps) {
@@ -35,8 +37,13 @@ export function ImageCard({
       try {
         // 입력 포맷이 PNG/JPG면 그대로, HEIC면 변환 후 브라우저가 읽을 수 있는 이미지로 로드합니다.
         const image = await loadImageSource(item);
-        const w = targetWidth;
-        const h = Math.round(image.height * (targetWidth / image.width));
+        const sourceWidth = image.naturalWidth || image.width;
+        const sourceHeight = image.naturalHeight || image.height;
+        const w = outputMode === "thumbnail" ? targetWidth : sourceWidth;
+        const h =
+          outputMode === "thumbnail"
+            ? Math.round(sourceHeight * (targetWidth / sourceWidth))
+            : sourceHeight;
         const canvas = canvasRef.current;
 
         if (!canvas) {
@@ -87,14 +94,14 @@ export function ImageCard({
 
     setProcessing(true);
     void run();
-  }, [format, item, quality, targetWidth]);
+  }, [format, item, outputMode, quality, targetWidth]);
 
   const download = () => {
     if (!result) return;
     const anchor = document.createElement("a");
     anchor.href = URL.createObjectURL(result.blob);
-    // 결과 파일명은 원본 이름 + _thumb + 선택한 출력 확장자로 만듭니다.
-    anchor.download = getOutputFileName(item.name, format);
+    // 결과 파일명은 원본 이름 + 출력 모드 접미사 + 선택한 출력 확장자로 만듭니다.
+    anchor.download = getOutputFileName(item.name, format, outputMode);
     anchor.click();
   };
 
@@ -145,6 +152,7 @@ export function ImageCard({
           {result && (
             <p className="mt-0.5 font-mono text-[11px] text-(--text-muted)">
               {result.w} × {result.h}px · {format.toUpperCase()} Q{quality}
+              {outputMode === "convert" && " · Original size preserved"}
             </p>
           )}
           {error && <p className="mt-1 text-[11px] text-[#f87171]">{error}</p>}

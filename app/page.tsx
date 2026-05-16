@@ -2,7 +2,7 @@
 import { FileDropZone } from "@/components/FileDropZone";
 import { ImageCard } from "@/components/ImageCard";
 import { SettingsPanel } from "@/components/SettingsPanel";
-import { OutputFormat } from "@/constants";
+import { OutputFormat, OutputMode } from "@/constants";
 import { useCallback, useState } from "react";
 
 const structuredData = {
@@ -21,6 +21,7 @@ const structuredData = {
   featureList: [
     "PNG, JPG, HEIC, and HEIF input support",
     "JPEG and WebP thumbnail output",
+    "Convert images without resizing",
     "Adjustable image quality",
     "Aspect-ratio preserving resize",
     "In-browser file processing",
@@ -29,6 +30,7 @@ const structuredData = {
 
 export default function Home() {
   const [files, setFiles] = useState<File[]>([]);
+  const [outputMode, setOutputMode] = useState<OutputMode>("thumbnail");
   const [format, setFormat] = useState<OutputFormat>("webp");
   const [quality, setQuality] = useState(82);
   const [width, setWidth] = useState(1200);
@@ -60,13 +62,15 @@ export default function Home() {
           </h1>
         </div>
         <p className="pl-12 text-sm text-(--text-muted)">
-          PNG / JPG / HEIC → JPEG / WebP · Aspect ratio preserved · Fast
-          in-browser processing
+          PNG / JPG / HEIC → JPEG / WebP · Resize or convert without resizing ·
+          Fast in-browser processing
         </p>
       </div>
 
       <div className="mb-5">
         <SettingsPanel
+          outputMode={outputMode}
+          setOutputMode={setOutputMode}
           format={format}
           setFormat={setFormat}
           quality={quality}
@@ -103,6 +107,7 @@ export default function Home() {
                 key={file.name + file.size + index}
                 item={file}
                 format={format}
+                outputMode={outputMode}
                 quality={quality}
                 targetWidth={width}
               />
@@ -129,7 +134,7 @@ export default function Home() {
         <div className="mt-4 grid gap-4 text-sm leading-6 text-(--text-muted) md:grid-cols-3">
           <p>
             Convert source images into JPEG or WebP thumbnails with adjustable
-            quality and width settings.
+            quality and width settings, or keep the original dimensions.
           </p>
           <p>
             Keep image proportions intact while reducing file size for sites,

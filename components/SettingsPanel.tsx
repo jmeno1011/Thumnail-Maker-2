@@ -1,6 +1,13 @@
-import { FORMATS, type OutputFormat } from "../constants";
+import {
+  FORMATS,
+  OUTPUT_MODES,
+  type OutputFormat,
+  type OutputMode,
+} from "../constants";
 
 type SettingsPanelProps = {
+  outputMode: OutputMode;
+  setOutputMode: (mode: OutputMode) => void;
   format: OutputFormat;
   setFormat: (format: OutputFormat) => void;
   quality: number;
@@ -10,6 +17,8 @@ type SettingsPanelProps = {
 };
 
 export function SettingsPanel({
+  outputMode,
+  setOutputMode,
   format,
   setFormat,
   quality,
@@ -21,6 +30,29 @@ export function SettingsPanel({
     // SettingsPanel은 변환 옵션을 직접 바꾸는 UI만 담당합니다.
     // 실제 변환은 ImageCard가 하고, 여기서는 상위 상태를 업데이트만 합니다.
     <div className="flex flex-wrap items-end gap-8 rounded-(--radius) border border-(--border) bg-(--surface) px-6 py-5">
+      <div>
+        <label className="mb-2 block text-xs uppercase tracking-[0.08em] text-(--text-muted)">
+          Output mode
+        </label>
+        <div className="flex gap-2">
+          {OUTPUT_MODES.map((item) => (
+            <button
+              key={item}
+              type="button"
+              onClick={() => setOutputMode(item)}
+              className={[
+                "cursor-pointer rounded-lg border px-4 py-1.75 text-[13px] font-semibold transition-all duration-150",
+                outputMode === item
+                  ? "border-green-700 bg-[#6ee7b7] text-[#0d0f14]"
+                  : "border-(--border) bg-transparent text-(--text-muted)",
+              ].join(" ")}
+            >
+              {item === "thumbnail" ? "Thumbnail" : "Convert only"}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div>
         <label className="mb-2 block text-xs uppercase tracking-[0.08em] text-(--text-muted)">
           Format
@@ -57,12 +89,15 @@ export function SettingsPanel({
             min={400}
             max={3840}
             step={100}
+            disabled={outputMode === "convert"}
             // 사용자가 입력한 가로 길이는 비율 유지 리사이즈의 기준값으로 사용됩니다.
             onChange={(event) => setWidth(Number(event.target.value))}
-            className="w-22.5 rounded-lg border border-(--border) bg-(--surface2) px-3 py-1.75 font-mono text-sm font-semibold text-(--text) outline-none"
+            className="w-22.5 rounded-lg border border-(--border) bg-(--surface2) px-3 py-1.75 font-mono text-sm font-semibold text-(--text) outline-none disabled:cursor-not-allowed disabled:opacity-45"
           />
           <span className="text-xs text-(--text-muted)">
-            Aspect ratio preserved
+            {outputMode === "thumbnail"
+              ? "Aspect ratio preserved"
+              : "Original dimensions preserved"}
           </span>
         </div>
       </div>
