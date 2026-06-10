@@ -1,5 +1,6 @@
 "use client";
 import { FileDropZone } from "@/components/FileDropZone";
+import { Footer } from "@/components/Footer";
 import { ImageCard } from "@/components/ImageCard";
 import { SettingsPanel } from "@/components/SettingsPanel";
 import { OutputFormat, OutputMode } from "@/constants";
@@ -165,6 +166,7 @@ export default function Home() {
           </p>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }
