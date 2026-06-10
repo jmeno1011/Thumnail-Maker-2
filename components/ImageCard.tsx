@@ -151,7 +151,8 @@ export function ImageCard({
           </p>
           {result && (
             <p className="mt-0.5 font-mono text-[11px] text-(--text-muted)">
-              {result.w} × {result.h}px · {format.toUpperCase()} Q{quality}
+              {result.w} × {result.h}px · {format.toUpperCase()}
+              {format !== "png" && ` Q${quality}`}
               {outputMode === "convert" && " · Original size preserved"}
             </p>
           )}

@@ -12,7 +12,7 @@ const structuredData = {
   applicationCategory: "MultimediaApplication",
   operatingSystem: "Any",
   description:
-    "Convert PNG, JPG, and HEIC images into optimized JPEG or WebP thumbnails directly in your browser.",
+    "Convert PNG, JPG, and HEIC images into optimized JPEG, WebP, or PNG thumbnails directly in your browser.",
   offers: {
     "@type": "Offer",
     price: "0",
@@ -20,7 +20,7 @@ const structuredData = {
   },
   featureList: [
     "PNG, JPG, HEIC, and HEIF input support",
-    "JPEG and WebP thumbnail output",
+    "JPEG, WebP, and PNG thumbnail output",
     "Convert images without resizing",
     "Adjustable image quality",
     "Aspect-ratio preserving resize",
@@ -52,7 +52,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <div className="mb-9">
+      <div className="mb-5">
         <div className="mb-2 flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-[linear-gradient(135deg,#6ee7b7,#4d8ef8)] text-lg text-white">
             ✦
@@ -61,10 +61,28 @@ export default function Home() {
             Thumbnail Maker
           </h1>
         </div>
-        <p className="pl-12 text-sm text-(--text-muted)">
-          PNG / JPG / HEIC → JPEG / WebP · Resize or convert without resizing ·
-          Fast in-browser processing
-        </p>
+        <div className="flex flex-wrap items-center gap-2 pl-12 text-sm text-(--text-muted)">
+          <span className="inline-flex items-center gap-2 rounded-md border border-(--border) bg-(--surface) px-2.5 py-1">
+            <span className="text-[10px] font-extrabold uppercase tracking-[0.08em] text-(--accent)">
+              From
+            </span>
+            <span className="font-mono text-xs font-semibold text-(--text)">
+              PNG, JPG, HEIC
+            </span>
+          </span>
+          <span className="font-mono text-sm font-bold text-(--accent)">→</span>
+          <span className="inline-flex items-center gap-2 rounded-md border border-(--accent) bg-[#6ee7b7]/10 px-2.5 py-1">
+            <span className="text-[10px] font-extrabold uppercase tracking-[0.08em] text-(--accent)">
+              To
+            </span>
+            <span className="font-mono text-xs font-semibold text-(--text)">
+              JPEG, WebP, PNG
+            </span>
+          </span>
+          <span className="text-sm">
+            Resize or keep original size · Browser-only processing
+          </span>
+        </div>
       </div>
 
       <div className="mb-5">
@@ -133,8 +151,9 @@ export default function Home() {
         </h2>
         <div className="mt-4 grid gap-4 text-sm leading-6 text-(--text-muted) md:grid-cols-3">
           <p>
-            Convert source images into JPEG or WebP thumbnails with adjustable
-            quality and width settings, or keep the original dimensions.
+            Convert source images into JPEG, WebP, or PNG thumbnails with
+            adjustable quality and width settings, or keep the original
+            dimensions.
           </p>
           <p>
             Keep image proportions intact while reducing file size for sites,

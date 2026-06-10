@@ -117,6 +117,7 @@ export function SettingsPanel({
             max={100}
             value={quality}
             // 품질 값은 JPEG/WebP 인코딩 시 canvas.toBlob의 quality 인자로 전달됩니다.
+            // PNG 출력에서는 브라우저가 이 값을 무시하고 무손실 PNG로 인코딩합니다.
             onChange={(event) => setQuality(Number(event.target.value))}
             className="range-input flex-1 cursor-pointer accent-[#6ee7b7]"
           />

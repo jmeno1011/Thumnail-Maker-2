@@ -61,7 +61,7 @@ export default function Image() {
               maxWidth: 900,
             }}
           >
-            PNG, JPG, and HEIC to JPEG or WebP. Browser-only processing.
+            PNG, JPG, and HEIC to JPEG, WebP, or PNG. Browser-only processing.
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 # Thumbnail Maker
 
 Thumbnail Maker is a browser-based image thumbnail converter built with Next.js.
-It converts PNG, JPG, JPEG, HEIC, and HEIF files into optimized JPEG or WebP thumbnails
+It converts PNG, JPG, JPEG, HEIC, and HEIF files into optimized JPEG, WebP, or PNG thumbnails
 without uploading images to a server.
 
 Live site: [https://thumnail-maker-2.vercel.app/](https://thumnail-maker-2.vercel.app/)
@@ -9,7 +9,7 @@ Live site: [https://thumnail-maker-2.vercel.app/](https://thumnail-maker-2.verce
 ## Features
 
 - Convert `PNG`, `JPG`, `JPEG`, `HEIC`, and `HEIF` images
-- Export thumbnails as `JPEG` or `WebP`
+- Export thumbnails as `JPEG`, `WebP`, or `PNG`
 - Resize by target width while preserving aspect ratio
 - Adjust output quality before export
 - Handle multiple files in one session
@@ -32,7 +32,7 @@ Live site: [https://thumnail-maker-2.vercel.app/](https://thumnail-maker-2.verce
 2. Supported files are filtered in the drop zone.
 3. HEIC and HEIF files are normalized into browser-readable image blobs.
 4. Images are drawn to a hidden canvas and resized to the selected width.
-5. The canvas output is encoded as JPEG or WebP with the selected quality.
+5. The canvas output is encoded as JPEG, WebP, or PNG. JPEG and WebP use the selected quality.
 6. Each result is previewed and can be downloaded individually.
 
 ## Getting Started

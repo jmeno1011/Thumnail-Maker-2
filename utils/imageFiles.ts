@@ -76,7 +76,7 @@ export function getOutputFileName(
   format: OutputFormat,
   mode: OutputMode,
 ) {
-  const ext = format === "jpeg" ? "jpg" : "webp";
+  const ext = format === "png" ? "png" : format === "jpeg" ? "jpg" : "webp";
   const baseName = inputName.replace(/\.(png|jpe?g|heic|heif)$/i, "");
   const suffix = mode === "thumbnail" ? "thumb" : "converted";
 

@@ -13,12 +13,13 @@ export const metadata: Metadata = {
     template: "%s | Thumbnail Maker",
   },
   description:
-    "Convert PNG, JPG, and HEIC images into optimized JPEG or WebP thumbnails directly in your browser.",
+    "Convert PNG, JPG, and HEIC images into optimized JPEG, WebP, or PNG thumbnails directly in your browser.",
   applicationName: "Thumbnail Maker",
   keywords: [
     "thumbnail maker",
     "image converter",
     "webp converter",
+    "png converter",
     "jpeg converter",
     "heic converter",
     "browser image compression",
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Thumbnail Maker - Fast Image Thumbnail Converter",
     description:
-      "Convert PNG, JPG, and HEIC images into optimized JPEG or WebP thumbnails directly in your browser.",
+      "Convert PNG, JPG, and HEIC images into optimized JPEG, WebP, or PNG thumbnails directly in your browser.",
     url: "/",
     siteName: "Thumbnail Maker",
     images: [
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Thumbnail Maker - Fast Image Thumbnail Converter",
     description:
-      "Convert PNG, JPG, and HEIC images into optimized JPEG or WebP thumbnails directly in your browser.",
+      "Convert PNG, JPG, and HEIC images into optimized JPEG, WebP, or PNG thumbnails directly in your browser.",
     images: ["/opengraph-image"],
   },
   robots: {
